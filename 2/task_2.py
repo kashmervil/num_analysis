@@ -1,5 +1,7 @@
 #! /usr/bin/env python
 
+#usage: pass parameters a and k to the command line
+
 import math
 import sys
 
@@ -27,8 +29,13 @@ def Y(a,k,x,y): return dy(a,k,x,y)/d(a,k,x,y)
 
 NUM_EPS = 1.0e-9
 NUM_SPLITTER = 1000.0
-a = float(sys.argv[1])
-k = float(sys.argv[2])
+
+try:   
+    a = float(sys.argv[1])
+    k = float(sys.argv[2])
+except:
+    print "    Wrong command line parameters"
+    raise
 
 def sgn(x):
     return math.copysign(1,x)
@@ -55,7 +62,6 @@ def splitter():
 
 
 def newton():
-
     segments = splitter()
     segments = map(lambda x: [x[0][0],x[0][1]],segments)
     for i in range(len(segments)):
@@ -63,10 +69,13 @@ def newton():
         counter = 0
         while (math.fabs(F(k,root[0],root[1])) > NUM_EPS):
             counter += 1
-            print ' STEP ',counter ,'  X=',root[0], '  Y=',root[1],'  F(X,Y)=',F(k,root[0],root[1])
+            print ' STEP ',counter ,'  X=',root[0],
+            '  Y=',root[1],'  F(X,Y)=',F(k,root[0],root[1])
+           
             root[0] += X(a,k,root[0],root[1])
             root[1] += Y(a,k,root[0],root[1])
         print '\n'
+
 print """
 
 *****    Numerical Analysis, Homework 2 
