@@ -49,12 +49,3 @@ f = lambda x: 1/(0.25 + nu.sin(0.05 + x))
 
 printing(f, start, finish, 8)
 
-
-
-
-
-
-
-
-
-
