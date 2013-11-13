@@ -23,15 +23,6 @@ def runge(j, j2, k,):
     return (2**k*j2 - j)/(2**k - 1)
 
 
-start = 0.0
-finish = 0.4
-f = lambda x: 1/(0.25 + nu.sin(0.05 + x))
-
-
-def jm(method, y):
-    return method(f, start, finish, y)
-
-
 def printing(func, a, b, n):
 
     def method_print(method, k):
@@ -43,7 +34,8 @@ def printing(func, a, b, n):
             " ", nu.abs(one_precision - intgr.quad(func, a, b)[0]), "\n"
 
     print "METHOD OF INTEGRATION       N =", n,\
-        "           N= ", 2*n, "            RUNGE", "           ERROR\n"
+        "           N= ", 2*n, "            RUNGE", "           ERROR"
+    print "==============================================================================================="
     print "RECTANGLE METHOD        ",
     method_print(rectangle_method, 2)
     print "TRAPEZOIDAL METHOD      ",
@@ -51,6 +43,9 @@ def printing(func, a, b, n):
     print "SIMPSON'S RULE          ",
     method_print(simpson_rule, 4)
 
+start = 0.0
+finish = 0.4
+f = lambda x: 1/(0.25 + nu.sin(0.05 + x))
 
 printing(f, start, finish, 8)
 
